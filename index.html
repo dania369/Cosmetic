@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GlowBeauty - Final 13 Produk</title>
+<style>
+:root{--pink:#ff4d8d;--kuning:#ffcc00;--shopee:#ee4d2d;--dark:#222}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#f5f5f5}.hidden{display:none!important}
+#loginPage{height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(135deg,#ff4d8d,#ff9ac2);padding:20px}
+.login-box{background:white;width:100%;max-width:360px;padding:25px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.login-box h2{color:var(--pink);text-align:center;margin-bottom:15px}
+.input-group{position:relative;margin-bottom:10px}
+.input-group input{width:100%;padding:12px 40px 12px 12px;border:1px solid #ddd;border-radius:10px}
+.eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
+.btn-pink{background:var(--pink);color:white}
+.link-lupa{display:block;text-align:right;font-size:12px;color:var(--pink);margin:8px 0 12px;cursor:pointer;text-decoration:underline;font-weight:600}
+#forgotModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center;z-index:999;padding:20px}
+.forgot-box{background:white;width:100%;max-width:340px;padding:20px;border-radius:16px}
+.forgot-box input{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;margin-bottom:10px}
+header{background:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;box-shadow:0 2px 5px rgba(0,0,0,.05)}
+.logo{font-weight:800;color:var(--pink);font-size:20px}.logo span{color:var(--dark)}
+.search-bar{background:white;padding:8px 15px;position:sticky;top:54px;z-index:19;display:flex;gap:8px;align-items:center}
+.search-bar input{flex:1;padding:10px 15px;border-radius:20px;border:none;background:#f5f5f5}
+nav{display:flex;gap:5px;background:white;padding:10px;position:sticky;top:99px;z-index:18;overflow-x:auto}
+nav button{flex:1;min-width:80px;padding:10px;border:none;background:#eee;border-radius:10px;white-space:nowrap}
+nav button.active{background:var(--pink);color:white}
+.container{max-width:900px;margin:auto}
+.card{background:white;padding:15px;margin-bottom:8px}
+.banner-wrap{position:relative;overflow:hidden;background:white}
+.banner-slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.banner-slider::-webkit-scrollbar{display:none}
+.banner-slide{min-width:100%;scroll-snap-align:start}
+.banner-slide img{width:100%;height:180px;object-fit:cover;display:block}
+.banner-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.banner-dots span{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.5)}
+.banner-dots span.active{background:white}
+.kategori-shopee{display:flex;gap:10px;overflow-x:auto;padding:15px 10px;background:white;margin-bottom:8px}
+.kategori-shopee::-webkit-scrollbar{display:none}
+.kat-item{min-width:70px;text-align:center;flex-shrink:0;cursor:pointer}
+.kat-item.icon{width:50px;height:50px;background:#fff0f5;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 5px}
+.kat-item p{font-size:10px;font-weight:600}
+.flash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.flash-header h3{color:var(--shopee);font-style:italic}
+.timer{display:flex;gap:3px;align-items:center;font-size:12px}
+.timer b{background:var(--dark);color:white;padding:2px 5px;border-radius:3px}
+.slider{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
+.slider::-webkit-scrollbar{display:none}
+.slide-item{min-width:135px;background:white;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.1);scroll-snap-align:start;flex-shrink:0;border:1px solid #eee;position:relative}
+.slide-item img{width:135px;height:135px;object-fit:cover;display:block}
+.slide-item.diskon{position:absolute;top:0;right:0;background:var(--kuning);color:var(--shopee);font-size:10px;font-weight:bold;padding:2px 5px;border-radius:0 0 0 8px}
+.info{padding:8px}.info p{font-size:11px;height:30px;overflow:hidden;font-weight:600}
+.price{color:var(--shopee);font-weight:bold;font-size:13px}
+.filter-bar{display:flex;gap:8px;overflow-x:auto;padding:10px 15px;background:white;margin-bottom:8px}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-bar button{white-space:nowrap;padding:8px 14px;border-radius:20px;border:1px solid #ddd;background:white;font-size:11px;font-weight:600}
+.filter-bar button.active{background:var(--pink);color:white;border-color:var(--pink)}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0 8px}
+.item{background:white;border-radius:8px;overflow:hidden;border:1px solid #eee}
+.item img{width:100%;height:140px;object-fit:cover;display:block;background:#fff0f5}
+.item h4{font-size:12px;margin:6px 0;min-height:32px;padding:0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.varian{font-size:10px;color:#666;background:#fff0f5;padding:3px 6px;border-radius:10px;display:inline-block;margin:0 8px 5px}
+.actions{display:flex;gap:5px;padding:8px}
+.actions button{flex:1;padding:8px;border:none;border-radius:6px;font-size:11px;font-weight:bold;cursor:pointer}
+.buy{background:var(--pink);color:white}
+.keranjang-kuning{background:#ffcc00;color:#222;display:flex;align-items:center;justify-content:center;gap:5px;border:1.5px solid #ffb700;box-shadow:0 2px 5px rgba(255,204,0,.5)}
+.keranjang-kuning svg{width:18px;height:18px}
+.header-cart{background:#ffcc00;border:1.5px solid #ffb700;width:48px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;box-shadow:0 2px 8px rgba(255,204,0,.6)}
+.header-cart svg{width:24px;height:24px}
+.cart-count{position:absolute;top:-8px;right:-8px;background:#ee4d2d;color:white;font-size:11px;font-weight:bold;padding:2px 6px;border-radius:12px;min-width:20px;text-align:center;border:2px solid white}
+.cart-item{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.cart-item img{width:55px;height:55px;border-radius:8px;object-fit:cover}
+.qty{display:flex;gap:8px;align-items:center;margin-top:5px}
+.qty button{width:26px;height:26px;border-radius:50%;border:1px solid #ddd;background:white}
+.pay-option{display:flex;gap:8px;margin:8px 0}
+.pay-option label{flex:1;border:2px solid #eee;border-radius:12px;padding:10px;text-align:center;cursor:pointer;font-size:12px;font-weight:600}
+.pay-option input{display:none}
+.pay-option input:checked+label{border-color:var(--pink);background:#fff0f5;color:var(--pink)}
+.pay-detail{background:#fff8e1;border:1px dashed #ffcc80;border-radius:10px;padding:10px;margin-top:8px;font-size:12px}
+.order-box{border:1px dashed #ffb3cc;padding:10px;border-radius:10px;margin-bottom:10px;background:#fffafa}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;color:white;padding:12px 20px;border-radius:25px;font-size:13px;z-index:9999}
+</style>
+</head>
+<body>
+<div id="loginPage"><div class="login-box"><h2>GlowBeauty</h2><p style="text-align:center;font-size:12px;color:#888;margin-bottom:15px">Login Private - Hanya Owner</p><div class="input-group"><input type="text" id="user" placeholder="Username"></div><div class="input-group"><input type="password" id="pass" placeholder="Password"><span class="eye" onclick="togglePass('pass','eyeLogin')" id="eyeLogin">👁️</span></div><span class="link-lupa" onclick="openForgot()">Lupa kata sandi?</span><button class="btn btn-pink" onclick="login()">LOGIN</button><p id="loginMsg" style="font-size:12px;color:red;margin-top:10px;text-align:center"></p></div></div>
+<div id="forgotModal" class="hidden"><div class="forgot-box"><h3 style="color:var(--pink);margin-bottom:10px">🔑 Lupa Kata Sandi</h3><input type="text" id="forgotUser" placeholder="Username"><input type="text" id="forgotCode" placeholder="Kode: glow123"><div class="input-group"><input type="password" id="newPass" placeholder="Password Baru"><span class="eye" id="eyeNew" onclick="togglePass('newPass','eyeNew')">👁️</span></div><div style="display:flex;gap:8px"><button class="btn" style="flex:1;background:#eee" onclick="closeForgot()">Batal</button><button class="btn btn-pink" style="flex:1" onclick="resetPass()">Reset</button></div><p id="forgotMsg" style="font-size:11px;margin-top:8px;color:red"></p></div></div>
+<div id="app" class="hidden">
+<header><div class="logo">Glow<span>Beauty</span></div><div style="display:flex;gap:12px;align-items:center"><div class="header-cart" onclick="pindah('pesanan')"><svg viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span id="cartCount" class="cart-count">0</span></div><button onclick="logout()" style="background:#eee;border:none;padding:6px 12px;border-radius:20px">Logout</button></div></header>
+<div class="search-bar"><input type="text" placeholder="🔍 Cari..."><span>🔔</span><span>💬</span></div>
+<nav><button id="m1" class="active" onclick="pindah('dashboard')">📊 Dashboard</button><button id="m2" onclick="pindah('produk')">💄 Produk</button><button id="m3" onclick="pindah('pesanan')">🛒 Pesanan</button><button id="m4" onclick="pindah('profil')">👤 Profil</button></nav>
+<div class="container">
+<div id="dashboard"><div class="banner-wrap"><div class="banner-slider" id="bannerSlider"><div class="banner-slide"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&auto=format&fit=crop"></div><div class="banner-slide"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&auto=format&fit=crop"></div><div class="banner-slide"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&auto=format&fit=crop"></div></div><div class="banner-dots"><span class="active"></span><span></span><span></span></div></div>
+<div class="kategori-shopee"><div class="kat-item" onclick="filterKatGo('lipstik')"><div class="icon">💋</div><p>Lipstik</p></div><div class="kat-item" onclick="filterKatGo('makeup')"><div class="icon">💄</div><p>Makeup</p></div><div class="kat-item" onclick="filterKatGo('bedak basah')"><div class="icon">🧴</div><p>Bedak Basah</p></div><div class="kat-item" onclick="filterKatGo('sunscreen')"><div class="icon">☀️</div><p>Sunscreen</p></div><div class="kat-item" onclick="filterKatGo('parfum')"><div class="icon">🌸</div><p>Parfum</p></div><div class="kat-item" onclick="pindah('produk')"><div class="icon">➡️</div><p>Semua</p></div></div>
+<div class="card"><div class="flash-header"><h3>⚡ FLASH SALE</h3><div class="timer"><b id="jam">01</b>:<b id="menit">23</b>:<b id="detik">45</b></div></div><div class="slider" id="sliderFlash"></div></div><div class="card"><div class="flash-header"><h3>💄 Makeup</h3></div><div class="slider" id="sliderMakeup"></div></div><div class="card"><div class="flash-header"><h3>🌸 Parfum & Skincare</h3></div><div class="slider" id="sliderParfum"></div></div></div>
+<div id="produk" class="hidden"><div class="filter-bar"><button class="active" onclick="filterKat('all',this)">Semua</button><button onclick="filterKat('lipstik',this)">Lipstik</button><button onclick="filterKat('makeup',this)">Makeup</button><button onclick="filterKat('bedak basah',this)">Bedak Basah</button><button onclick="filterKat('sunscreen',this)">Sunscreen</button><button onclick="filterKat('parfum',this)">Parfum</button></div><div class="products" id="listProduk"></div></div>
+<div id="pesanan" class="hidden"><div class="card"><h3>🛒 Keranjang</h3><div id="cartList"></div><div id="cartTotalBox" class="hidden"><hr style="margin:15px 0"><div style="display:flex;justify-content:space-between;font-weight:bold;font-size:18px"><span>Total:</span><span id="totalHarga" style="color:var(--shopee)">Rp 0</span></div><input id="namaPembeli" placeholder="Nama Pembeli" style="width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:10px"><input id="alamatPembeli" placeholder="Alamat" style="width:100%;padding:12px;margin-bottom:10px;border:1px solid #ddd;border-radius:10px"><div class="pay-option"><input type="radio" name="pay" id="payCOD" value="COD" checked onchange="showPayDetail()"><label for="payCOD">🚚<br>COD</label><input type="radio" name="pay" id="payTransfer" value="Transfer" onchange="showPayDetail()"><label for="payTransfer">🏦<br>Transfer</label><input type="radio" name="pay" id="payEWallet" value="E-Wallet" onchange="showPayDetail()"><label for="payEWallet">📱<br>E-Wallet</label></div><div id="payDetail" class="pay-detail"></div><button class="btn btn-pink" style="margin-top:12px;background:#2e7d32;color:white" onclick="checkout()">✅ Checkout</button></div></div><div class="card"><h3>📦 Riwayat</h3><div id="orderList"></div></div></div>
+<div id="profil" class="hidden"><div class="card"><h3>Akun Private</h3><p>Username: admin</p><p>Password: •••••</p><button class="btn" style="margin-top:10px;background:#fff0f5;color:var(--pink);border:1px solid #ffb3cc" onclick="openForgot()">🔑 Ganti Password</button><button class="btn" style="margin-top:10px;background:#222;color:white" onclick="logout()">Logout</button></div></div>
+</div></div>
+<script>
+const USERNAME_RAHASIA="admin";const PASSWORD_DEFAULT="09876";const KODE_RAHASIA="glow123";
+function getPassword(){return localStorage.getItem('customPassGlow')||PASSWORD_DEFAULT;}
+function togglePass(id,eyeId){const i=document.getElementById(id);const e=document.getElementById(eyeId);if(i.type==="password"){i.type="text";e.textContent="🙈";}else{i.type="password";e.textContent="👁️";}}
+let produk=[
+{id:1,nama:"Matte Lipstick Rose Velvet",harga:75000,diskon:90000,kategori:"lipstik",varian:"Rose, Nude, Red",gambar:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400"},
+{id:5,nama:"Moisturizer Aloe Vera",harga:95000,diskon:120000,kategori:"moisturizer",varian:"Aloe Vera",gambar:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400"},
+{id:6,nama:"Blush On Peach Glam",harga:55000,diskon:70000,kategori:"makeup",varian:"Peach, Pink",gambar:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400"},
+{id:7,nama:"Mascara Volume Lash",harga:89000,diskon:110000,kategori:"makeup",varian:"Black Waterproof",gambar:"https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=400"},
+{id:8,nama:"Sunscreen SPF 50 PA++++",harga:110000,diskon:135000,kategori:"sunscreen",varian:"SPF 50",gambar:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400"},
+{id:10,nama:"Eyeshadow Palette 12 Warna",harga:135000,diskon:180000,kategori:"makeup",varian:"Nude, Glam",gambar:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400"},
+{id:14,nama:"Highlighter Glowing Skin",harga:67000,diskon:85000,kategori:"makeup",varian:"Champagne",gambar:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400"},
+{id:15,nama:"Setting Spray Makeup Lock",harga:78000,diskon:95000,kategori:"makeup",varian:"100ml",gambar:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400"},
+{id:16,nama:"Lip Cream Matte Transferproof",harga:62000,diskon:80000,kategori:"lipstik",varian:"Merah Bata, Mauve",gambar:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400"},
+{id:18,nama:"Primer Pore Minimizer",harga:85000,diskon:105000,kategori:"makeup",varian:"Pore Blur",gambar:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400"},
+{id:31,nama:"Parfum Floral Dream 30ml",harga:95000,diskon:115000,kategori:"parfum",varian:"Rose, Jasmine",gambar:"https://images.unsplash.com/photo-1541643600914-78b084683601?w=400"},
+{id:36,nama:"Bedak Basah Two Way Cake",harga:98000,diskon:120000,kategori:"bedak basah",varian:"Natural, Ivory",gambar:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400"},
+{id:37,nama:"Tinted Sunscreen Glow",harga:115000,diskon:140000,kategori:"sunscreen",varian:"Beige Glow",gambar:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400"}
+];
+let keranjang=JSON.parse(localStorage.getItem('keranjangGlow'))||[];let pesanan=JSON.parse(localStorage.getItem('pesananGlow'))||[];
+function showToast(pesan){let t=document.createElement('div');t.className='toast';t.innerText=pesan;document.body.appendChild(t);setTimeout(()=>t.remove(),2000);}
+function openForgot(){document.getElementById('forgotModal').classList.remove('hidden');}
+function closeForgot(){document.getElementById('forgotModal').classList.add('hidden');}
+function resetPass(){const u=document.getElementById('forgotUser').value.trim();const c=document.getElementById('forgotCode').value.trim();const n=document.getElementById('newPass').value.trim();const msg=document.getElementById('forgotMsg');if(!u||!c||!n){msg.innerText="Isi semua!";return;}if(u!==USERNAME_RAHASIA||c!==KODE_RAHASIA){msg.innerText="Kode salah!";return;}localStorage.setItem('customPassGlow',n);msg.style.color="green";msg.innerText="Berhasil!";setTimeout(()=>{closeForgot();showToast("Password baru disimpan");},1000);}
+function login(){const u=document.getElementById('user').value.trim();const p=document.getElementById('pass').value.trim();const msg=document.getElementById('loginMsg');if(u===USERNAME_RAHASIA&&p===getPassword()){localStorage.setItem('isLogin','true');startApp();}else{msg.innerText="Username / Password salah!";}}
+function logout(){localStorage.removeItem('isLogin');location.reload();}
+function startApp(){document.getElementById('loginPage').classList.add('hidden');document.getElementById('app').classList.remove('hidden');renderAll();startBanner();startTimer();}
+if(localStorage.getItem('isLogin')==='true')startApp();
+function pindah(m){['dashboard','produk','pesanan','profil'].forEach(x=>document.getElementById(x).classList.add('hidden'));document.getElementById(m).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));document.getElementById({dashboard:'m1',produk:'m2',pesanan:'m3',profil:'m4'}[m]).classList.add('active');window.scrollTo(0,0);}
+let katAktif='all';function filterKat(k,b){katAktif=k;document.querySelectorAll('.filter-bar button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProduk();}
+function filterKatGo(k){pindah('produk');setTimeout(()=>{katAktif=k;document.querySelectorAll('.filter-bar button').forEach(btn=>{btn.classList.remove('active');if(btn.textContent.toLowerCase().includes(k))btn.classList.add('active');});renderProduk();},100);}
+function addToCart(id){let p=produk.find(x=>x.id===id);let it=keranjang.find(x=>x.id===id);if(it)it.qty++;else keranjang.push({...p,qty:1});saveCart();renderCart();const c=document.querySelector('.header-cart');c.style.transform='scale(1.2)';setTimeout(()=>c.style.transform='scale(1)',200);showToast(p.nama+" masuk keranjang");}
+function ubahQty(id,d){let it=keranjang.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)keranjang=keranjang.filter(x=>x.id!==id);saveCart();renderCart();}
+function saveCart(){localStorage.setItem('keranjangGlow',JSON.stringify(keranjang));updateBadge();}
+function updateBadge(){let t=keranjang.reduce((a,b)=>a+b.qty,0);document.getElementById('cartCount').innerText=t;}
+function showPayDetail(){let v=document.querySelector('input[name="pay"]:checked').value;let el=document.getElementById('payDetail');if(v==='COD')el.innerHTML='🚚 <b>COD</b> - Bayar di tempat';else if(v==='Transfer')el.innerHTML='🏦 <b>Transfer Bank</b><br>BCA 1234567890 a.n GlowBeauty';else el.innerHTML='📱 <b>E-Wallet</b><br>DANA / OVO / GoPay: 0812-3456-7890';}
+function renderProduk(){const el=document.getElementById('listProduk');el.innerHTML="";let f=katAktif==='all'?produk:produk.filter(x=>x.kategori.toLowerCase().includes(katAktif));f.forEach(p=>{el.innerHTML+=`<div class="item"><img src="${p.gambar}"><h4>${p.nama}</h4><span class="varian">${p.varian}</span><div style="padding:0 8px"><div class="price">Rp ${p.harga.toLocaleString()} <del style="color:#888;font-size:10px">Rp ${p.diskon.toLocaleString()}</del></div></div><div class="actions"><button class="buy" onclick="addToCart(${p.id})">Beli</button><button class="keranjang-kuning" onclick="addToCart(${p.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Keranjang</button></div></div>`;});}
+function renderCart(){const l=document.getElementById('cartList');const b=document.getElementById('cartTotalBox');if(keranjang.length===0){l.innerHTML='<p style="font-size:12px;color:#888">Kosong</p>';b.classList.add('hidden');updateBadge();return;}let tot=0;l.innerHTML="";keranjang.forEach(k=>{tot+=k.harga*k.qty;l.innerHTML+=`<div class="cart-item"><img src="${k.gambar}"><div style="flex:1"><b style="font-size:13px">${k.nama}</b><br><span class="price">Rp ${k.harga.toLocaleString()}</span><div class="qty"><button onclick="ubahQty(${k.id},-1)">-</button><span>${k.qty}</span><button onclick="ubahQty(${k.id},1)">+</button><span style="margin-left:8px;color:var(--pink);cursor:pointer;font-size:11px" onclick="ubahQty(${k.id},-${k.qty})">Hapus</span></div></div></div>`;});document.getElementById('totalHarga').innerText="Rp "+tot.toLocaleString();b.classList.remove('hidden');updateBadge();}
+function checkout(){const n=document.getElementById('namaPembeli').value.trim();const a=document.getElementById('alamatPembeli').value.trim();if(!n||!a){showToast("Isi nama & alamat!");return;}if(keranjang.length===0){showToast("Keranjang kosong!");return;}let total=keranjang.reduce((s,x)=>s+x.harga*x.qty,0);let order={id:Date.now(),nama:n,alamat:a,items:[...keranjang],total:total,pay:document.querySelector('input[name="pay"]:checked').value,tanggal:new Date().toLocaleString()};pesanan.unshift(order);localStorage.setItem('pesananGlow',JSON.stringify(pesanan));keranjang=[];saveCart();renderCart();renderPesanan();pindah('pesanan');showToast("Checkout berhasil! Total Rp "+total.toLocaleString());}
+function renderPesanan(){const el=document.getElementById('orderList');if(pesanan.length===0){el.innerHTML='<p style="font-size:12px;color:#888">Belum ada pesanan</p>';return;}el.innerHTML="";pesanan.forEach(o=>{el.innerHTML+=`<div class="order-box"><b>#${o.id}</b> - ${o.tanggal}<br><small>${o.nama}</small><br>${o.items.map(i=>`• ${i.nama} x${i.qty}`).join('<br>')}<br><b style="color:var(--shopee)">Rp ${o.total.toLocaleString()}</b> - ${o.pay}</div>`;});}
+function renderSlider(id,data){document.getElementById(id).innerHTML=data.map(p=>`<div class="slide-item"><div class="diskon">${Math.round((1-p.harga/p.diskon)*100)}%</div><img src="${p.gambar}"><div class="info"><p>${p.nama}</p><div class="price">Rp ${p.harga.toLocaleString()}</div><div style="display:flex;gap:4px;margin-top:4px"><button class="btn btn-pink" style="flex:1;padding:4px;font-size:10px" onclick="addToCart(${p.id})">Beli</button><button class="keranjang-kuning" style="flex:1;padding:4px;font-size:10px" onclick="addToCart(${p.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></button></div></div></div>`).join('');}
+function renderAll(){renderProduk();renderCart();renderPesanan();showPayDetail();renderSlider('sliderFlash',produk.slice(0,8));renderSlider('sliderMakeup',produk.filter(p=>p.kategori==='makeup' || p.kategori==='lipstik'));renderSlider('sliderParfum',produk.filter(p=>p.kategori==='parfum'||p.kategori==='sunscreen'||p.kategori==='bedak basah'));}
+let bi=0;function startBanner(){setInterval(()=>{bi=(bi+1)%3;const s=document.getElementById('bannerSlider');if(s)s.scrollTo({left:bi*s.clientWidth,behavior:'smooth'});document.querySelectorAll('.banner-dots span').forEach((d,i)=>d.classList.toggle('active',i===bi));},3000);}
+function startTimer(){let j=1,m=23,s=45;setInterval(()=>{s--;if(s<0){s=59;m--;if(m<0){m=59;j--;if(j<0)j=1;}}document.getElementById('jam').innerText=String(j).padStart(2,'0');document.getElementById('menit').innerText=String(m).padStart(2,'0');document.getElementById('detik').innerText=String(s).padStart(2,'0');},1000);}
+</script>
+</body>
+</html>
